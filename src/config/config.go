@@ -13,6 +13,7 @@ import (
 var (
 	UrlDatabase = ""
 	ApiPort     = 0
+	SecretKey   []byte
 )
 
 func LoadEnv() {
@@ -38,4 +39,5 @@ func LoadEnv() {
 		os.Getenv("DB_NAME"),
 	)
 
+	SecretKey = []byte(os.Getenv("SECRET_KEY"))
 }

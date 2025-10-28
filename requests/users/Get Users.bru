@@ -5,13 +5,17 @@ meta {
 }
 
 get {
-  url: http://localhost:5000/user?user=a
+  url: http://localhost:5000/user?user=andré
   body: none
-  auth: inherit
+  auth: bearer
 }
 
 params:query {
-  user: a
+  user: andré
+}
+
+auth:bearer {
+  token: 
 }
 
 settings {

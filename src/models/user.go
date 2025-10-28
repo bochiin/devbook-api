@@ -34,23 +34,23 @@ func (user *User) Prepare(step utils.Step) error {
 func (user *User) validate(step utils.Step) error {
 
 	if utils.IsBlank(user.Name) {
-		return errors.New("O nome é obrigatório e não pode estar em branco")
+		return errors.New("o nome é obrigatório e não pode estar em branco")
 	}
 
 	if utils.IsBlank(user.Nickname) {
-		return errors.New("O nick é obrigatório e não pode estar em branco")
+		return errors.New("o nick é obrigatório e não pode estar em branco")
 	}
 
 	if utils.IsBlank(user.Email) {
-		return errors.New("O email é obrigatório e não pode estar em branco")
+		return errors.New("o email é obrigatório e não pode estar em branco")
 	}
 
 	if err := checkmail.ValidateFormat(user.Email); err != nil {
-		return errors.New("O e-mail inserido é inválido")
+		return errors.New("o e-mail inserido é inválido")
 	}
 
 	if step == utils.CREATED && utils.IsBlank(user.Password) {
-		return errors.New("A senha é obrigatória e não pode estar em branco")
+		return errors.New("a senha é obrigatória e não pode estar em branco")
 	}
 
 	return nil

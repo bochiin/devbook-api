@@ -7,7 +7,11 @@ meta {
 put {
   url: http://localhost:5000/user/1
   body: json
-  auth: inherit
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE3NjE3MTU0MDQsImlkIjoyfQ.OhRhdciCnRrKABRXi5KOsJB3Pz2I2b985gL_kRRoLHM
 }
 
 body:json {

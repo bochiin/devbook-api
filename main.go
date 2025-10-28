@@ -13,7 +13,7 @@ func main() {
 
 	r := router.CreateRouter()
 
-	fmt.Printf("Escutando na porta %d", config.ApiPort)
+	fmt.Printf("Escutando na porta %d\n", config.ApiPort)
 
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", config.ApiPort), r))
 }

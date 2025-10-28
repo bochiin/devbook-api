@@ -1,12 +1,14 @@
 package controllers
 
 import (
+	"api/src/auth"
 	"api/src/database"
 	"api/src/models"
 	"api/src/repository"
 	"api/src/responses"
 	"api/src/utils"
 	"encoding/json"
+	"errors"
 	"io"
 	"net/http"
 	"strconv"
@@ -121,6 +123,10 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if valid := validateRequestSameUser(id, w, r); !valid {
+		return
+	}
+
 	body, err := io.ReadAll(r.Body)
 
 	if err != nil {
@@ -169,6 +175,10 @@ func DeleteUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if valid := validateRequestSameUser(id, w, r); !valid {
+		return
+	}
+
 	db, err := database.Connect()
 
 	if err != nil {
@@ -186,4 +196,20 @@ func DeleteUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	responses.JSON(w, http.StatusNoContent, nil)
+}
+
+func validateRequestSameUser(idUser uint64, w http.ResponseWriter, r *http.Request) bool {
+	idUserToken, err := auth.ExtractUserIdToken(r)
+
+	if err != nil {
+		responses.Error(w, http.StatusBadRequest, err)
+		return false
+	}
+
+	if idUser != idUserToken {
+		responses.Error(w, http.StatusForbidden, errors.New("não é possivel atualizar um usuário que não é seu"))
+		return false
+	}
+
+	return true
 }

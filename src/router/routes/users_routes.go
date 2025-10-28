@@ -16,24 +16,24 @@ var userRoutes = []Route{
 		Uri:     "/user",
 		Method:  http.MethodGet,
 		Func:    controllers.GetUsers,
-		HasAuth: false,
+		HasAuth: true,
 	},
 	{
 		Uri:     "/user/{id}",
 		Method:  http.MethodGet,
 		Func:    controllers.GetUser,
-		HasAuth: false,
+		HasAuth: true,
 	},
 	{
 		Uri:     "/user/{id}",
 		Method:  http.MethodPut,
 		Func:    controllers.UpdateUser,
-		HasAuth: false,
+		HasAuth: true,
 	},
 	{
 		Uri:     "/user/{id}",
 		Method:  http.MethodDelete,
 		Func:    controllers.DeleteUser,
-		HasAuth: false,
+		HasAuth: true,
 	},
 }
