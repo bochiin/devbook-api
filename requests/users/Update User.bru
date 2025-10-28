@@ -1,13 +1,21 @@
 meta {
-  name: UpdateUser
+  name: Update User
   type: http
   seq: 4
 }
 
 put {
   url: http://localhost:5000/user/1
-  body: none
+  body: json
   auth: inherit
+}
+
+body:json {
+  {
+    "name": "Daniel",
+    "nickname": "Dani",
+    "email": "daniel@teste.com"
+  }
 }
 
 settings {
